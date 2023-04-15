@@ -2,6 +2,7 @@ export const LIFT_STATUS = {
   AVAILABLE: "available",
   BUSY: "busy",
   FULL: "full",
+  DEFECTIVE: "defective",
 };
 export const LIFT_DIRECTION = {
   UP: "UP",

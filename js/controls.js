@@ -122,5 +122,31 @@ const move = (liftRef) => {
           return to(Number(liftData.pos) + 1);
         else return to(Number(liftData.pos) - 1);
     },
+    toggleDefective(to) {
+      if (liftData.status === LIFT_STATUS.BUSY) {
+        liftData.floorsQueue = Number(liftData.pos);
+      }
+    },
   };
+};
+
+export const onDefectiveHandler = (event) => {
+  const lift = event.target.parentElement;
+  const isDetective = lift.className.includes(LIFT_STATUS.DEFECTIVE);
+  if (isDetective) {
+    lift.classList.remove(LIFT_STATUS.DEFECTIVE);
+    event.target.innerText = "Mark as Defective";
+
+    /**
+This will immediately disable the lift and visually add a red border around the lift.
+This disabled lift will immediately go to the nearest floor and open the doors and keep it open. The lift will display the floor number its heading to.
+     */
+    move(lift).toggleDefective(false);
+    lift.dataset.status = LIFT_STATUS.AVAILABLE;
+  } else {
+    move(lift).toggleDefective(true);
+    lift.classList.add(LIFT_STATUS.DEFECTIVE);
+    lift.dataset.status = LIFT_STATUS.DEFECTIVE;
+    event.target.innerText = "Mark as Fixed";
+  }
 };

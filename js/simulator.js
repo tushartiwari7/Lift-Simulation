@@ -1,4 +1,4 @@
-import { onLiftRequest } from "./controls.js";
+import { onLiftRequest, onDefectiveHandler } from "./controls.js";
 import { LIFT_DIRECTION, LIFT_STATUS, FLOOR_HEIGHT } from "./helpers.js";
 
 const searchParams = new URLSearchParams(window.location.search);
@@ -66,9 +66,13 @@ for (let i = floors; i > 0; i--) {
       lift.dataset.status = LIFT_STATUS.AVAILABLE;
       lift.dataset.floorsQueue = "";
       lift.dataset.direction = "";
-
       lift.innerHTML = `<div class="door left"></div><div class="door right"></div>
       `;
+      const btn_mark_defective = document.createElement("button");
+      btn_mark_defective.className = "btn_mark_defective";
+      btn_mark_defective.innerText = "Mark as Defective";
+      btn_mark_defective.addEventListener("click", onDefectiveHandler);
+      lift.appendChild(btn_mark_defective);
       floor.appendChild(lift);
     }
   }

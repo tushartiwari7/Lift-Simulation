@@ -57,6 +57,10 @@
   overflow: hidden;
   background: lightgoldenrodyellow;
 }
+.lift.defective {
+  background: palevioletred;
+}
+
 .lift .door {
   flex-grow: 1;
   background: palegreen;
@@ -80,4 +84,12 @@
   font-family: "Stick No Bills", sans-serif;
   font-size: 1.2rem;
   text-align: center;
+}
+
+.btn_mark_defective {
+  position: absolute;
+  border-radius: 0px;
+  bottom: 5px;
+  width: calc(100% - 10px);
+  box-sizing: border-box;
 }
