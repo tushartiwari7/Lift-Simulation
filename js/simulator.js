@@ -23,12 +23,12 @@ for (let i = floors; i > 0; i--) {
 
   // adding Controls to Floor View (Up,down Btn)
   const btnGoUp = document.createElement("button");
-  btnGoUp.onclick = () => onLiftRequest(i, LIFT_DIRECTION.UP);
+  btnGoUp.onclick = (e) => onLiftRequest(i, e);
   btnGoUp.type = "button";
   btnGoUp.innerText = LIFT_DIRECTION.UP;
 
   const btnGoDown = document.createElement("button");
-  btnGoDown.onclick = () => onLiftRequest(i, LIFT_DIRECTION.BOTTOM);
+  btnGoDown.onclick = (e) => onLiftRequest(i, e);
   btnGoDown.type = "button";
   btnGoDown.innerText = LIFT_DIRECTION.BOTTOM;
 

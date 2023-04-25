@@ -11,8 +11,14 @@ import {
 } from "./helpers.js";
 const waitingListQueue = [];
 
-export const onLiftRequest = (floor_no) => {
+export const onLiftRequest = (floor_no, event) => {
   const lifts = document.getElementsByClassName("lift");
+  console.log(event);
+  // ignore btn request if lift has already been called.
+  if (event.target.parentElement.dataset.disabled === "true") {
+    console.log("already requested");
+    return;
+  }
 
   let closestLift = [...lifts].reduce(isClosestReducer(floor_no), {
     distance: Number.MAX_SAFE_INTEGER,
