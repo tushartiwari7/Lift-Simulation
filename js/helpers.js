@@ -83,9 +83,11 @@ export const toggleControls = (floor_no, enable = true) => {
   const floor = [...floors].find(
     (floor) => floor_no === Number(floor.parentElement.dataset.floorNo)
   );
-  floor.childNodes.forEach((element) => {
-    if (element.tagName === "BUTTON") {
-      element.disabled = enable;
-    }
-  });
+  floor.dataset.disabled = enable;
+
+  // floor.childNodes.forEach((element) => {
+  //   if (element.tagName === "BUTTON") {
+  //     element.disabled = enable;
+  //   }
+  // });
 };
