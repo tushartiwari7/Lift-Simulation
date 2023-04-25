@@ -48,16 +48,19 @@ export const onLiftRequest = (floor_no, event) => {
 const move = (liftRef) => {
   const liftData = liftRef.dataset;
 
-  const removeStop = async (queue) => {
+  const removeStop = async (liftData) => {
+    let queue = sortFloors(liftData.floorsQueue);
     if (queue.includes(Number(liftData.pos))) {
       // open nd close doors for 2.5s each,
       await openDoors();
       await closeDoors();
 
+      queue = sortFloors(liftData.floorsQueue); // health check to update the queue if got any more requests while doors were animating.
       toggleControls(Number(liftData.pos), false);
-      liftData.floorsQueue = queue.filter(
+      const updatedQueue = queue.filter(
         (floor) => floor !== Number(liftData.pos)
       );
+      liftData.floorsQueue = updatedQueue;
       return true;
     }
     return false;
@@ -92,7 +95,7 @@ const move = (liftRef) => {
       const destination = getDestination(queue, liftData);
 
       (async () => {
-        await removeStop(queue);
+        await removeStop(liftData);
 
         liftData.direction =
           destination - floor_no > 0
@@ -123,6 +126,7 @@ const move = (liftRef) => {
     addStop(floor_no) {
       const queue = sortFloors(liftData.floorsQueue);
       queue.push(floor_no);
+      console.log({ floor_no, queue, liftData });
       toggleControls(floor_no, true);
       liftData.floorsQueue = queue;
       if (liftData.status !== LIFT_STATUS.BUSY)
