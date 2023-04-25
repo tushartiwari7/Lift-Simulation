@@ -38,8 +38,10 @@
 }
 
 .controls button {
-  padding: 6px 1rem;
   font-family: sans-serif;
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
 
 .floor_no {

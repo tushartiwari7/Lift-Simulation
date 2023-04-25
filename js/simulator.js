@@ -1,5 +1,5 @@
 import { onLiftRequest } from "./controls.js";
-import { LIFT_DIRECTION, LIFT_STATUS, FLOOR_HEIGHT } from "./helpers.js";
+import { LIFT_STATUS, FLOOR_HEIGHT, arrowUp, arrowDown } from "./helpers.js";
 
 const searchParams = new URLSearchParams(window.location.search);
 
@@ -25,12 +25,12 @@ for (let i = floors; i > 0; i--) {
   const btnGoUp = document.createElement("button");
   btnGoUp.onclick = (e) => onLiftRequest(i, e);
   btnGoUp.type = "button";
-  btnGoUp.innerText = LIFT_DIRECTION.UP;
+  btnGoUp.innerHTML = arrowUp;
 
   const btnGoDown = document.createElement("button");
   btnGoDown.onclick = (e) => onLiftRequest(i, e);
   btnGoDown.type = "button";
-  btnGoDown.innerText = LIFT_DIRECTION.BOTTOM;
+  btnGoDown.innerHTML = arrowDown;
 
   const floorControlWrap = document.createElement("div");
   floorControlWrap.classList.add("controls");
