@@ -13,10 +13,12 @@
 }
 
 #header {
-  text-align: center;
+  padding: 1rem;
   font-size: 1.5rem;
   font-weight: 600;
   font-family: "Stick No Bills", sans-serif;
+  display: flex;
+  justify-content: space-between;
 }
 
 #lift-inputs {

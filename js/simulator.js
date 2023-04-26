@@ -9,8 +9,7 @@ const lifts = Number(searchParams.get("lifts"));
 if (!floors || !lifts) location.href = "/";
 
 const header = document.getElementById("header");
-header.innerText = `Floors: ${floors} Lifts: ${lifts}`;
-
+header.append(`Floors: ${floors} Lifts: ${lifts}`);
 const app = document.getElementById("simulator");
 app.style.gridTemplateRows = `repeat(${floors},${FLOOR_HEIGHT}px)`;
 
